@@ -20,7 +20,6 @@ final class Result implements \IteratorAggregate
     private function __construct(
         private \Iterator $rows,
         public int $affectedRowsNumber,
-        public mixed $debugData,
         private Hydrator $hydrator,
         private ColumnTypeRegistry $columnTypeRegistry,
     ) {
@@ -34,7 +33,6 @@ final class Result implements \IteratorAggregate
     public static function create(
         \Traversable $rows,
         int $affectedRowsNumber,
-        mixed $debugData,
         ?Hydrator $hydrator = null,
         ?ColumnTypeRegistry $columnTypeRegistry = null,
     ): self {
@@ -44,7 +42,6 @@ final class Result implements \IteratorAggregate
         return new self(
             new \NoRewindIterator($rows),
             $affectedRowsNumber,
-            $debugData,
             $hydrator ?? new SimpleInstantiatingHydrator(),
             $columnTypeRegistry ?? new NullColumnTypeRegistry(),
         );
@@ -64,7 +61,6 @@ final class Result implements \IteratorAggregate
                 }
             })(),
             $this->affectedRowsNumber,
-            $this->debugData,
             $this->hydrator,
             $this->columnTypeRegistry,
         );
@@ -84,7 +80,6 @@ final class Result implements \IteratorAggregate
                 }
             })(),
             $this->affectedRowsNumber,
-            $this->debugData,
             $this->hydrator,
             $this->columnTypeRegistry,
         );
