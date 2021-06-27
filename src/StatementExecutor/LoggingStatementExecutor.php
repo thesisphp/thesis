@@ -21,18 +21,19 @@ final class LoggingStatementExecutor implements StatementExecutor
 
     public function execute(string $statement, array $parameters = []): ExecutedStatement
     {
-        $this->logger->log($this->level, 'About to execute statement {statement}.', [
-            'statement' => $statement,
-            'parameters' => $parameters,
-        ]);
+        $this->log($statement, $parameters);
 
         $executedStatement = $this->statementExecutor->execute($statement, $parameters);
 
-        $this->logger->log($this->level, 'Statement was executed and affected {affected_rows_number} rows.', [
+        $this->log($executedStatement->debugMessage, [
             'affected_rows_number' => $executedStatement->affectedRowsNumber,
-            'debug_data' => $executedStatement->debugContext,
-        ]);
+        ] + $executedStatement->debugContext);
 
         return $executedStatement;
+    }
+
+    private function log(string $message, array $context): void
+    {
+        $this->logger->log($this->level, $message, $context);
     }
 }
