@@ -41,6 +41,7 @@
     },
     "scripts": {
         "fixcs": "php-cs-fixer fix -v",
-        "psalm": "psalm --no-diff --show-info --threads=4"
+        "psalm": "psalm --no-diff --show-info --threads=4",
+        "check-require": "composer-require-checker check --config-file=composer-require-checker.json"
     }
 }
