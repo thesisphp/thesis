@@ -12,11 +12,13 @@ use Thesis\StatementContext\ValueResolver;
  */
 final class LikeResolver implements ValueResolver
 {
+    private const DEFAULT_ESCAPE_CHARACTER = '/';
+
     private LikeEscaper $escaper;
     private string $escapeExpression;
 
     public function __construct(
-        string $escapeCharacter = '/',
+        string $escapeCharacter = self::DEFAULT_ESCAPE_CHARACTER,
     ) {
         $this->escaper = new LikeEscaper($escapeCharacter);
         $this->escapeExpression = " escape '{$escapeCharacter}'";
