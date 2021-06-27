@@ -1,7 +1,7 @@
 {
     "name": "thesis/thesis",
-    "description": "A fancy tool to use SQL in PHP with ease",
     "type": "library",
+    "description": "A fancy tool to use SQL in PHP with ease",
     "license": "MIT",
     "authors": [
         {
@@ -41,10 +41,5 @@
     "scripts": {
         "fixcs": "php-cs-fixer fix -v",
         "psalm": "psalm --no-diff --show-info --threads=4"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.1-dev"
-        }
     }
 }
