@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<psalm
+    checkForThrowsDocblock="true"
+    checkForThrowsInGlobalScope="true"
+    ensureArrayStringOffsetsExist="true"
+    errorLevel="1"
+    findUnusedPsalmSuppress="true"
+    reportMixedIssues="true"
+    sealAllMethods="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src"/>
+        <directory name="tests"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+
+    <issueHandlers>
+        <MixedAssignment errorLevel="suppress"/>
+    </issueHandlers>
+
+    <ignoreExceptions>
+        <classAndDescendants name="Error"/>
+        <classAndDescendants name="LogicException"/>
+        <classAndDescendants name="RuntimeException"/>
+        <classAndDescendants name="Psr\Container\ContainerExceptionInterface"/>
+    </ignoreExceptions>
+
+    <stubs>
+        <file name="stubs/ContainerExceptionInterface.phpstub"/>
+        <file name="stubs/ContainerInterface.phpstub"/>
+    </stubs>
+</psalm>

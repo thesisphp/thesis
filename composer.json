@@ -1,0 +1,50 @@
+{
+    "name": "thesis/thesis",
+    "description": "A fancy tool to use SQL in PHP with ease",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Valentin Udaltsov",
+            "homepage": "https://github.com/vudaltsov"
+        },
+        {
+            "name": "Pavel Ivanov",
+            "homepage": "https://github.com/Etherlord"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "psr/container": "^1.0 || ^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "icanhazstring/composer-unused": "^0.7",
+        "maglnet/composer-require-checker": "^3.3",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "~0.15",
+        "vimeo/psalm": "^4.8"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Thesis\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Thesis\\": "tests/"
+        }
+    },
+    "scripts": {
+        "fixcs": "php-cs-fixer fix -v",
+        "psalm": "psalm --no-diff --show-info --threads=4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
