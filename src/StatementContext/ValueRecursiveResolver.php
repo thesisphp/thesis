@@ -44,7 +44,7 @@ final class ValueRecursiveResolver
                 throw new \LogicException(sprintf(
                     'Type resolution cycle %s > %s (%s) detected.',
                     implode(' > ', array_map(
-                        fn (string $type, string $valueResolver): string => "{$type} ({$valueResolver})",
+                        static fn (string $type, string $valueResolver): string => "{$type} ({$valueResolver})",
                         array_keys($this->resolvedTypes),
                         $this->resolvedTypes,
                     )),

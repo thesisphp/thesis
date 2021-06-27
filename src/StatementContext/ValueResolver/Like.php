@@ -22,7 +22,7 @@ final class Like
      */
     public static function contains(string $value): self
     {
-        return new self(fn (LikeEscaper $like): string => "%{$like->escape($value)}%");
+        return new self(static fn (LikeEscaper $like): string => "%{$like->escape($value)}%");
     }
 
     /**
@@ -30,7 +30,7 @@ final class Like
      */
     public static function startsWith(string $value): self
     {
-        return new self(fn (LikeEscaper $like): string => "{$like->escape($value)}%");
+        return new self(static fn (LikeEscaper $like): string => "{$like->escape($value)}%");
     }
 
     /**
@@ -38,6 +38,6 @@ final class Like
      */
     public static function endsWith(string $value): self
     {
-        return new self(fn (LikeEscaper $like): string => "%{$like->escape($value)}");
+        return new self(static fn (LikeEscaper $like): string => "%{$like->escape($value)}");
     }
 }
