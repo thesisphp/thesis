@@ -30,7 +30,7 @@ final class LoggingStatementExecutor implements StatementExecutor
 
         $this->logger->log($this->level, 'Statement was executed and affected {affected_rows_number} rows.', [
             'affected_rows_number' => $executedStatement->affectedRowsNumber,
-            'debug_data' => $executedStatement->debugData,
+            'debug_data' => $executedStatement->debugContext,
         ]);
 
         return $executedStatement;

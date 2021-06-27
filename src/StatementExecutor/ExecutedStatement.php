@@ -12,7 +12,8 @@ final class ExecutedStatement
     public function __construct(
         public \Traversable $rows,
         public int $affectedRowsNumber,
-        public mixed $debugData,
+        public string $debugMessage = '',
+        public array $debugContext = [],
     ) {
     }
 }
