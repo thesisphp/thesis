@@ -7,9 +7,9 @@ namespace Thesis\StatementContext;
 use Thesis\StatementContext\ValueResolverRegistry\NullValueResolverRegistry;
 
 /**
- * Thesis Statement Context.
+ * Thesis Statement conteXt.
  *
- * @psalm-type Statement = string|iterable<string>|callable(self): string|iterable<string>
+ * @psalm-type Statement = string|\Generator<string>|callable(self): string|\Generator<string>
  */
 final class Tsx
 {
@@ -23,7 +23,7 @@ final class Tsx
      * @param Statement $statement
      * @return array{string, array<string, mixed>}
      */
-    public static function resolve(string|iterable|callable $statement, ?ValueResolverRegistry $valueResolverRegistry = null): array
+    public static function resolve(string|\Generator|callable $statement, ?ValueResolverRegistry $valueResolverRegistry = null): array
     {
         $parameters = new Parameters();
         $context = new self($valueResolverRegistry ?? new NullValueResolverRegistry(), $parameters);
@@ -51,22 +51,16 @@ final class Tsx
     /**
      * @param Statement $statement
      */
-    public function embed(string|iterable|callable $statement): string
+    public function embed(string|\Generator|callable $statement): string
     {
         if (\is_callable($statement)) {
-            return $this->embed($statement($this));
+            $statement = $statement($this);
         }
 
         if (\is_string($statement)) {
             return $statement;
         }
 
-        $joined = '';
-
-        foreach ($statement as $piece) {
-            $joined .= $piece.' ';
-        }
-
-        return $joined;
+        return implode(' ', iterator_to_array($statement, false));
     }
 }

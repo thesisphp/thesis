@@ -15,7 +15,6 @@ final class Parameters
      * @psalm-readonly-allow-private-mutation
      */
     public array $parameters = [];
-
     private int $unnamedParametersCount = 0;
 
     public function add(?string $name, mixed $value): string
