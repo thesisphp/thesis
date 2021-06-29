@@ -54,6 +54,8 @@ final class ColumnTypeMapper
         foreach (array_keys($row) as $column) {
             if (!isset($this->columnTypes[$column])) {
                 $this->resolvers[$column] = static fn (array $row): mixed => $row[$column];
+
+                continue;
             }
 
             $type = $this
@@ -65,13 +67,7 @@ final class ColumnTypeMapper
                 ))
             ;
 
-            $this->resolvers[$column] = static function (array $row) use ($column, $type): mixed {
-                if ($row[$column] === null) {
-                    return null;
-                }
-
-                return $type->transform($row[$column]);
-            };
+            $this->resolvers[$column] = static fn (array $row): mixed => $type->transform($row[$column]);
         }
 
         return $this->resolvers;
