@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "ext-pdo": "*",
         "psr/container": "^1.0 || ^2.0",
         "psr/log": "^1.0"
     },
