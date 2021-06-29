@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Thesis\StatementContext\ValueResolver;
 
-/**
- * @psalm-immutable
- */
 final class Json
 {
     public const NEVER = 0;
