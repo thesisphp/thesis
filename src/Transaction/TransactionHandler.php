@@ -8,15 +8,27 @@ interface TransactionHandler
 {
     public function begin(): void;
 
-    public function setIsolationLevel(TransactionIsolationLevel $isolationLevel): void;
+    /**
+     * @param TransactionIsolationLevels::* $isolationLevel
+     */
+    public function setIsolationLevel(string $isolationLevel): void;
 
     public function commit(): void;
 
     public function rollback(): void;
 
+    /**
+     * @param literal-string $savepoint
+     */
     public function savepoint(string $savepoint): void;
 
+    /**
+     * @param literal-string $savepoint
+     */
     public function releaseSavepoint(string $savepoint): void;
 
+    /**
+     * @param literal-string $savepoint
+     */
     public function rollbackToSavepoint(string $savepoint): void;
 }

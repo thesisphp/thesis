@@ -20,9 +20,10 @@ final class TransactionContext
      * @psalm-suppress MissingThrowsDocblock
      * @template T of mixed|void
      * @param callable(): T $operation
+     * @param ?TransactionIsolationLevels::* $isolationLevel
      * @return T
      */
-    public function transactionally(callable $operation, ?TransactionIsolationLevel $isolationLevel = null)
+    public function transactionally(callable $operation, ?string $isolationLevel = null)
     {
         ++$this->level;
 
@@ -72,7 +73,10 @@ final class TransactionContext
         }
     }
 
-    private function begin(?TransactionIsolationLevel $isolationLevel): void
+    /**
+     * @param ?TransactionIsolationLevels::* $isolationLevel
+     */
+    private function begin(?string $isolationLevel): void
     {
         if ($this->level === self::MAIN_TRANSACTION_LEVEL) {
             $this->transactionHandler->begin();
@@ -109,8 +113,12 @@ final class TransactionContext
         $this->transactionHandler->rollbackToSavepoint($this->levelSavepoint());
     }
 
+    /**
+     * @return literal-string
+     */
     private function levelSavepoint(): string
     {
+        /** @var literal-string This is not correct from static analysis perspective, but technically concatenating literal with an integer is safe */
         return 'thesis_savepoint_'.$this->level;
     }
 }

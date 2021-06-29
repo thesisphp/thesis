@@ -4,47 +4,48 @@ declare(strict_types=1);
 
 namespace Thesis\Transaction;
 
-use Thesis\StatementExecutor\StatementExecutor;
-
 final class SqlTransactionHandler implements TransactionHandler
 {
+    /**
+     * @param callable(literal-string): void $statementExecutor
+     */
     public function __construct(
-        private StatementExecutor $statementExecutor,
+        private $statementExecutor,
     ) {
     }
 
     public function begin(): void
     {
-        $this->statementExecutor->execute('start transaction');
+        ($this->statementExecutor)('start transaction');
     }
 
-    public function setIsolationLevel(TransactionIsolationLevel $isolationLevel): void
+    public function setIsolationLevel(string $isolationLevel): void
     {
-        $this->statementExecutor->execute('set transaction isolation level '.$isolationLevel->toString());
+        ($this->statementExecutor)('set transaction isolation level '.$isolationLevel);
     }
 
     public function commit(): void
     {
-        $this->statementExecutor->execute('commit');
+        ($this->statementExecutor)('commit');
     }
 
     public function rollback(): void
     {
-        $this->statementExecutor->execute('rollback');
+        ($this->statementExecutor)('rollback');
     }
 
     public function savepoint(string $savepoint): void
     {
-        $this->statementExecutor->execute('savepoint '.$savepoint);
+        ($this->statementExecutor)('savepoint '.$savepoint);
     }
 
     public function releaseSavepoint(string $savepoint): void
     {
-        $this->statementExecutor->execute('release savepoint '.$savepoint);
+        ($this->statementExecutor)('release savepoint '.$savepoint);
     }
 
     public function rollbackToSavepoint(string $savepoint): void
     {
-        $this->statementExecutor->execute('rollback to savepoint '.$savepoint);
+        ($this->statementExecutor)('rollback to savepoint '.$savepoint);
     }
 }
