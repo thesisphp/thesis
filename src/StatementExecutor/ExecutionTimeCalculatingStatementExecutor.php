@@ -12,7 +12,7 @@ final class ExecutionTimeCalculatingStatementExecutor implements StatementExecut
     private $microtime;
 
     /**
-     * @param ?callable(): float $microtime For mocking purposes
+     * @param ?callable(): float $microtime For testing purposes
      */
     public function __construct(
         private StatementExecutor $statementExecutor,
@@ -21,10 +21,14 @@ final class ExecutionTimeCalculatingStatementExecutor implements StatementExecut
         $this->microtime = $microtime ?? static fn (): float => microtime(true);
     }
 
-    public function execute(string $statement, array $parameters = []): ExecutedStatement
+    public function execute(string $statement, array $parameters = [], bool $debug = false): ExecutedStatement
     {
+        if (!$debug) {
+            return $this->statementExecutor->execute($statement, $parameters, $debug);
+        }
+
         $executionStartTime = ($this->microtime)();
-        $executedStatement = $this->statementExecutor->execute($statement, $parameters);
+        $executedStatement = $this->statementExecutor->execute($statement, $parameters, $debug);
         $executionTime = (int) round((($this->microtime)() - $executionStartTime) * 1000);
 
         return new ExecutedStatement(

@@ -19,15 +19,17 @@ final class LoggingStatementExecutor implements StatementExecutor
     ) {
     }
 
-    public function execute(string $statement, array $parameters = []): ExecutedStatement
+    public function execute(string $statement, array $parameters = [], bool $debug = false): ExecutedStatement
     {
         $this->log($statement, $parameters);
 
-        $executedStatement = $this->statementExecutor->execute($statement, $parameters);
+        $executedStatement = $this->statementExecutor->execute($statement, $parameters, $debug);
 
-        $this->log($executedStatement->debugMessage, [
-            'affected_rows_number' => $executedStatement->affectedRowsNumber,
-        ] + $executedStatement->debugContext);
+        if ($debug) {
+            $this->log($executedStatement->debugMessage, [
+                'affected_rows_number' => $executedStatement->affectedRowsNumber,
+            ] + $executedStatement->debugContext);
+        }
 
         return $executedStatement;
     }
