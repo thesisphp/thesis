@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Thesis\Tool\PsrContainer;
+namespace Thesis;
 
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -24,11 +24,9 @@ final class ArrayContainer implements ContainerInterface
 
     public function get($id): mixed
     {
-        if (!\array_key_exists($id, $this->items)) {
-            throw new class(sprintf('Service "%s" not found in container.', $id)) extends \Exception implements NotFoundExceptionInterface {};
-        }
-
-        return $this->items[$id];
+        return \array_key_exists($id, $this->items)
+            ? $this->items[$id]
+            : throw new class(sprintf('Item "%s" not found in container.', $id)) extends \Exception implements NotFoundExceptionInterface {};
     }
 
     public function has($id): bool

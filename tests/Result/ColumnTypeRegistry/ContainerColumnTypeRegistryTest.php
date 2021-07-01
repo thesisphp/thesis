@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Thesis\Result\ColumnTypeRegistry;
 
 use PHPUnit\Framework\TestCase;
+use Thesis\ArrayContainer;
 use Thesis\Result\ColumnType;
 use Thesis\Result\ColumnType\FloatColumnType;
-use Thesis\Tool\PsrContainer\ArrayContainer;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertNull;
 

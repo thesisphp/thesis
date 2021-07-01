@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Thesis\StatementContext\ValueResolverRegistry;
 
 use PHPUnit\Framework\TestCase;
+use Thesis\ArrayContainer;
 use Thesis\StatementContext\ValueResolver;
 use Thesis\StatementContext\ValueResolver\Json;
 use Thesis\StatementContext\ValueResolver\JsonResolver;
-use Thesis\Tool\PsrContainer\ArrayContainer;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 
