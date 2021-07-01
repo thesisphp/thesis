@@ -21,50 +21,55 @@ final class LoggingTransactionHandler implements TransactionHandler
 
     public function begin(): void
     {
-        $this->logger->log($this->level, 'Begin transaction');
+        $this->log('Begin transaction.');
 
         $this->transactionHandler->begin();
     }
 
     public function setIsolationLevel(string $isolationLevel): void
     {
-        $this->logger->log($this->level, 'Set isolation level');
+        $this->log('Set isolation level.');
 
         $this->transactionHandler->setIsolationLevel($isolationLevel);
     }
 
     public function commit(): void
     {
-        $this->logger->log($this->level, 'Commit');
+        $this->log('Commit.');
 
         $this->transactionHandler->commit();
     }
 
     public function rollback(): void
     {
-        $this->logger->log($this->level, 'Rollback');
+        $this->log('Rollback.');
 
         $this->transactionHandler->rollback();
     }
 
     public function savepoint(string $savepoint): void
     {
-        $this->logger->log($this->level, 'Savepoint '.$savepoint);
+        $this->log(sprintf('Savepoint %s.', $savepoint));
 
         $this->transactionHandler->savepoint($savepoint);
     }
 
     public function releaseSavepoint(string $savepoint): void
     {
-        $this->logger->log($this->level, 'Release savepoint '.$savepoint);
+        $this->log(sprintf('Release savepoint %s.', $savepoint));
 
         $this->transactionHandler->releaseSavepoint($savepoint);
     }
 
     public function rollbackToSavepoint(string $savepoint): void
     {
-        $this->logger->log($this->level, 'Rollback to savepoint '.$savepoint);
+        $this->log(sprintf('Rollback to savepoint %s.', $savepoint));
 
         $this->transactionHandler->rollbackToSavepoint($savepoint);
+    }
+
+    private function log(string $message): void
+    {
+        $this->logger->log($this->level, $message);
     }
 }
