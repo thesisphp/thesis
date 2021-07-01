@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Thesis\StatementExecutor;
 
+use Thesis\StatementExecutor\Exception\UnresolvedException;
+
 final class PdoStatementExecutor implements StatementExecutor
 {
     public function __construct(
@@ -21,7 +23,12 @@ final class PdoStatementExecutor implements StatementExecutor
             $pdoStatement->bindValue($name, $pdoValue->value, $pdoValue->type);
         }
 
-        $pdoStatement->execute();
+        try {
+            $pdoStatement->execute();
+        } catch (\PDOException $exception) {
+            throw new UnresolvedException($exception->getMessage(), (string) $exception->getCode(), $exception);
+        }
+
         $pdoStatement->setFetchMode(\PDO::FETCH_ASSOC);
 
         $debugMessage = '';
