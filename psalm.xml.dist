@@ -24,6 +24,11 @@
     </plugins>
 
     <issueHandlers>
+        <MissingThrowsDocblock>
+            <errorLevel type="suppress">
+                <directory name="tests"/>
+            </errorLevel>
+        </MissingThrowsDocblock>
         <MixedAssignment errorLevel="suppress"/>
     </issueHandlers>
 
