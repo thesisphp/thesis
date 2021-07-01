@@ -29,6 +29,7 @@ final class Result implements \IteratorAggregate
      * @template TNewKey
      * @template TNewRow
      * @param \Traversable<TNewKey, TNewRow> $rows
+     * @return self<TNewKey, TNewRow>
      */
     public static function create(
         \Traversable $rows,
