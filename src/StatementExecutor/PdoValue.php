@@ -24,13 +24,13 @@ final class PdoValue
     public static function fromMixed(mixed $value): self
     {
         return match (get_debug_type($value)) {
-            self::class => $value,
             'null' => new self(null, \PDO::PARAM_NULL),
             'bool' => new self($value, \PDO::PARAM_BOOL),
             'int' => new self($value, \PDO::PARAM_INT),
-            'float', 'string', \Stringable::class => new self((string) $value, \PDO::PARAM_STR),
+            'float', 'string' => new self((string) $value, \PDO::PARAM_STR),
+            self::class => $value,
             default => throw new \InvalidArgumentException(sprintf(
-                'Value of type "%s" is not supported by PdoStatementExecutor.',
+                'PdoStatementExecutor expects value of type null|scalar|PdoValue, %s given.',
                 get_debug_type($value),
             )),
         };
