@@ -10,7 +10,7 @@ interface ContainerInterface
 {
     /**
      * @param TId $id
-     * @throws NotFoundExceptionInterface|ContainerExceptionInterface
+     * @throws ContainerExceptionInterface
      * @return TItem
      */
     public function get(string $id);
