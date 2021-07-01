@@ -3,4 +3,6 @@
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /.php-cs-fixer.dist.php export-ignore
+/composer-require-checker.json export-ignore
+/phpunit.xml.dist export-ignore
 /psalm.xml.dist export-ignore
