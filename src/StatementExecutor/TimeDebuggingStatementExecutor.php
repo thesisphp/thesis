@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Thesis\StatementExecutor;
 
-final class ExecutionTimeCalculatingStatementExecutor implements StatementExecutor
+final class TimeDebuggingStatementExecutor implements StatementExecutor
 {
     /**
      * @var callable(): float
@@ -35,7 +35,7 @@ final class ExecutionTimeCalculatingStatementExecutor implements StatementExecut
             $executedStatement->rows,
             $executedStatement->affectedRowsNumber,
             $executedStatement->debugMessage,
-            ['execution_time_ms' => $executionTime] + $executedStatement->debugContext,
+            ['time_ms' => $executionTime] + $executedStatement->debugContext,
         );
     }
 }
