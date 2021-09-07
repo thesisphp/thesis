@@ -63,4 +63,30 @@ final class Tsx
 
         return implode(' ', iterator_to_array($statement, false));
     }
+
+    /**
+     * Formats an iterable of values as insert value sets.
+     *
+     * @template TKey
+     * @template TValue
+     * @param iterable<TKey, TValue> $values
+     * @param callable(TValue, TKey, self): string $formatter
+     */
+    public function sets(iterable $values, callable $formatter): string
+    {
+        $string = '';
+        $first = true;
+
+        foreach ($values as $key => $value) {
+            if ($first) {
+                $first = false;
+            } else {
+                $string .= ', ';
+            }
+
+            $string .= '('.$formatter($value, $key, $this).')';
+        }
+
+        return $string;
+    }
 }
