@@ -30,7 +30,7 @@ return
             '@PHPUnit84Migration:risky' => true,
             '@PSR12' => true,
             '@PSR12:risky' => true,
-            // Todo: remove when https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/5495 is resolved.
+            // fixme: remove the line below when https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/5922 is resolved
             'binary_operator_spaces' => ['operators' => ['|' => null]],
             'blank_line_before_statement' => [
                 'statements' => [
