@@ -113,12 +113,8 @@ final class TransactionContext
         $this->transactionHandler->rollbackToSavepoint($this->levelSavepoint());
     }
 
-    /**
-     * @return literal-string
-     */
     private function levelSavepoint(): string
     {
-        /** @var literal-string This is not correct from static analysis perspective, but technically concatenating literal with an integer is safe */
         return 'thesis_savepoint_'.$this->level;
     }
 }

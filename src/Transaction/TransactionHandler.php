@@ -17,18 +17,9 @@ interface TransactionHandler
 
     public function rollback(): void;
 
-    /**
-     * @param literal-string $savepoint
-     */
     public function savepoint(string $savepoint): void;
 
-    /**
-     * @param literal-string $savepoint
-     */
     public function releaseSavepoint(string $savepoint): void;
 
-    /**
-     * @param literal-string $savepoint
-     */
     public function rollbackToSavepoint(string $savepoint): void;
 }

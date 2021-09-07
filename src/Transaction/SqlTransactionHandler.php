@@ -7,7 +7,7 @@ namespace Thesis\Transaction;
 final class SqlTransactionHandler implements TransactionHandler
 {
     /**
-     * @param callable(literal-string): void $statementExecutor
+     * @param callable(string): void $statementExecutor
      */
     public function __construct(
         private $statementExecutor,
