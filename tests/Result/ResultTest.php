@@ -162,7 +162,6 @@ final class ResultTest extends TestCase
 
     private function traverse(iterable $iterable): void
     {
-        foreach ($iterable as $_value) {
-        }
+        foreach ($iterable as $_value);
     }
 }
