@@ -13,7 +13,7 @@ final class PdoStatementExecutor implements StatementExecutor
     ) {
     }
 
-    public function execute(string $statement, array $parameters = [], bool $debug = false): ExecutedStatement
+    public function execute(string $statement, array $parameters = []): ExecutedStatement
     {
         /** @var \PDOStatement<array> $pdoStatement */
         $pdoStatement = $this->pdo->prepare($statement);
@@ -31,14 +31,10 @@ final class PdoStatementExecutor implements StatementExecutor
 
         $pdoStatement->setFetchMode(\PDO::FETCH_ASSOC);
 
-        $debugMessage = '';
+        ob_start();
+        $pdoStatement->debugDumpParams();
+        $debugInfo = ['pdo' => ob_get_clean() ?: ''];
 
-        if ($debug) {
-            ob_start();
-            $pdoStatement->debugDumpParams();
-            $debugMessage = ob_get_clean() ?: '';
-        }
-
-        return new ExecutedStatement($pdoStatement, $pdoStatement->rowCount(), $debugMessage);
+        return new ExecutedStatement($pdoStatement, $pdoStatement->rowCount(), $debugInfo);
     }
 }
