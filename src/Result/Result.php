@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Thesis\Result;
 
 use Thesis\Result\ColumnTypeRegistry\NullColumnTypeRegistry;
-use Thesis\Result\Hydrator\SimpleInstantiatingHydrator;
+use Thesis\Result\Hydrator\SimpleHydrator;
 
 /**
  * @template TKey
@@ -43,7 +43,7 @@ final class Result implements \IteratorAggregate
         return new self(
             new \NoRewindIterator($rows),
             $affectedRowsNumber,
-            $hydrator ?? new SimpleInstantiatingHydrator(),
+            $hydrator ?? new SimpleHydrator(),
             $columnTypeRegistry ?? new NullColumnTypeRegistry(),
         );
     }

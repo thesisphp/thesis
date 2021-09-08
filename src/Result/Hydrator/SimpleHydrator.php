@@ -6,7 +6,7 @@ namespace Thesis\Result\Hydrator;
 
 use Thesis\Result\Hydrator;
 
-final class SimpleInstantiatingHydrator implements Hydrator
+final class SimpleHydrator implements Hydrator
 {
     /**
      * @psalm-suppress MixedMethodCall

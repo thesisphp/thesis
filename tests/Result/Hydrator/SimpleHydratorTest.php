@@ -11,14 +11,14 @@ use function PHPUnit\Framework\assertSame;
 
 /**
  * @internal
- * @covers \Thesis\Result\Hydrator\SimpleInstantiatingHydrator
+ * @covers \Thesis\Result\Hydrator\SimpleHydrator
  * @group unit
  */
-final class SimpleInstantiatingHydratorTest extends TestCase
+final class SimpleHydratorTest extends TestCase
 {
     public function testHydrate(): void
     {
-        $hydrator = new SimpleInstantiatingHydrator();
+        $hydrator = new SimpleHydrator();
 
         $result = $hydrator->hydrate('test', DTO::class);
 
@@ -28,7 +28,7 @@ final class SimpleInstantiatingHydratorTest extends TestCase
 
     public function testHydrateFromArray(): void
     {
-        $hydrator = new SimpleInstantiatingHydrator();
+        $hydrator = new SimpleHydrator();
 
         $result = $hydrator->hydrate(['test1', 'test2'], DTO::class);
 

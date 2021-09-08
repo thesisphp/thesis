@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Thesis\Result;
 
 use PHPUnit\Framework\TestCase;
-use Thesis\Result\Hydrator\SimpleInstantiatingHydrator;
+use Thesis\Result\Hydrator\SimpleHydrator;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 
@@ -121,7 +121,7 @@ final class ResultTest extends TestCase
         $thesisResult = Result::create(
             new \ArrayIterator(['key' => ['test1_key' => 'test1', 'test2_key' => 'test2']]),
             1,
-            new SimpleInstantiatingHydrator(),
+            new SimpleHydrator(),
         );
 
         $result = $thesisResult->hydrate(DTO::class);
