@@ -100,7 +100,7 @@ final class Result implements \IteratorAggregate
      */
     public function keyColumn(int|string $column): self
     {
-        return $this->mapKey(new ExtractColumnMapper($column, 'keyColumn'));
+        return $this->mapKey(new ExtractColumnMapper(__METHOD__, $column));
     }
 
     /**
@@ -109,7 +109,7 @@ final class Result implements \IteratorAggregate
      */
     public function rowColumn(int|string $column): self
     {
-        return $this->mapRow(new ExtractColumnMapper($column, 'rowColumn'));
+        return $this->mapRow(new ExtractColumnMapper(__METHOD__, $column));
     }
 
     /**

@@ -13,8 +13,8 @@ final class ExtractColumnMapper
     private bool $checked = false;
 
     public function __construct(
-        private string|int $column,
-        private string $fromMethod,
+        private string $method,
+        private int|string $column,
     ) {
     }
 
@@ -36,8 +36,8 @@ final class ExtractColumnMapper
 
         if (!\is_array($row)) {
             throw new \UnexpectedValueException(sprintf(
-                'Result::%s(\'%s\') expects row value to be of type array{%2$s: mixed}, got %s.',
-                $this->fromMethod,
+                '%s(\'%s\') expects row value to be of type array{%2$s: mixed}, got %s.',
+                $this->method,
                 $this->column,
                 get_debug_type($row),
             ));
@@ -45,8 +45,8 @@ final class ExtractColumnMapper
 
         if (!\array_key_exists($this->column, $row)) {
             throw new \UnexpectedValueException(sprintf(
-                'Result::%s(\'%s\') expects row array to have offset \'%2$s\', got %s.',
-                $this->fromMethod,
+                '%s(\'%s\') expects row array to have offset \'%2$s\', got %s.',
+                $this->method,
                 $this->column,
                 $row ? "array with offsets '".implode("', '", array_keys($row))."'" : 'empty array',
             ));
