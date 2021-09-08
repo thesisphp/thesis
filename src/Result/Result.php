@@ -140,14 +140,6 @@ final class Result implements \IteratorAggregate
     }
 
     /**
-     * @return \Traversable<TKey, TRow>
-     */
-    public function getIterator(): \Traversable
-    {
-        return $this->rows;
-    }
-
-    /**
      * @template TDefault
      * @template TCallable of ?callable(): TDefault
      * @param TCallable $default
@@ -167,5 +159,13 @@ final class Result implements \IteratorAggregate
         }
 
         return $default();
+    }
+
+    /**
+     * @return \Iterator<TKey, TRow>
+     */
+    public function getIterator(): \Iterator
+    {
+        return $this->rows;
     }
 }
