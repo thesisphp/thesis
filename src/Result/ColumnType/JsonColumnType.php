@@ -32,8 +32,7 @@ final class JsonColumnType implements ColumnType
         } catch (\JsonException $exception) {
             throw new \UnexpectedValueException(
                 sprintf('Expected a valid JSON string, got %s.', $value),
-                0,
-                $exception,
+                previous: $exception,
             );
         }
     }
