@@ -18,7 +18,7 @@ final class InMemoryColumnTypeRegistry implements ColumnTypeRegistry
      * @param iterable<ColumnType> $columnTypes
      */
     public function __construct(
-        iterable $columnTypes,
+        iterable $columnTypes = [],
     ) {
         foreach ($columnTypes as $columnType) {
             $this->columnTypes[$columnType::class] = $columnType;

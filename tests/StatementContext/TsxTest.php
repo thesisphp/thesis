@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use Thesis\StatementContext\ValueResolver\Json;
 use Thesis\StatementContext\ValueResolver\JsonResolver;
 use Thesis\StatementContext\ValueResolverRegistry\InMemoryValueResolverRegistry;
-use Thesis\StatementContext\ValueResolverRegistry\NullValueResolverRegistry;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertSame;
 
@@ -55,9 +54,7 @@ final class TsxTest extends TestCase
 
     public function testResolveString(): void
     {
-        $valueResolverRegistry = new NullValueResolverRegistry();
-
-        [$tsx, $parameters] = Tsx::resolve('test', $valueResolverRegistry);
+        [$tsx, $parameters] = Tsx::resolve('test');
 
         assertSame('test', $tsx);
         assertEquals([], $parameters);

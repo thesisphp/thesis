@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Thesis\StatementContext;
 
-use Thesis\StatementContext\ValueResolverRegistry\NullValueResolverRegistry;
+use Thesis\StatementContext\ValueResolverRegistry\InMemoryValueResolverRegistry;
 
 /**
  * Thesis Statement conteXt.
@@ -26,7 +26,7 @@ final class Tsx
     public static function resolve(string|\Generator|callable $statement, ?ValueResolverRegistry $valueResolverRegistry = null): array
     {
         $parameters = new Parameters();
-        $context = new self($valueResolverRegistry ?? new NullValueResolverRegistry(), $parameters);
+        $context = new self($valueResolverRegistry ?? new InMemoryValueResolverRegistry(), $parameters);
 
         return [$context->embed($statement), $parameters->parameters];
     }

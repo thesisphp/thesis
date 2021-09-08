@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Thesis\Result;
 
-use Thesis\Result\ColumnTypeRegistry\NullColumnTypeRegistry;
+use Thesis\Result\ColumnTypeRegistry\InMemoryColumnTypeRegistry;
 use Thesis\Result\Hydrator\SimpleHydrator;
 
 /**
@@ -44,7 +44,7 @@ final class Result implements \IteratorAggregate
             new \NoRewindIterator($rows),
             $affectedRowsNumber,
             $hydrator ?? new SimpleHydrator(),
-            $columnTypeRegistry ?? new NullColumnTypeRegistry(),
+            $columnTypeRegistry ?? new InMemoryColumnTypeRegistry(),
         );
     }
 

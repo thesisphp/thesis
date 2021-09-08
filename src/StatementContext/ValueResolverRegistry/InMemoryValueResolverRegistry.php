@@ -18,7 +18,7 @@ final class InMemoryValueResolverRegistry implements ValueResolverRegistry
      * @param iterable<ValueResolver> $valueResolvers
      */
     public function __construct(
-        iterable $valueResolvers,
+        iterable $valueResolvers = [],
     ) {
         foreach ($valueResolvers as $valueResolver) {
             foreach ($valueResolver::valueTypes() as $valueType) {
